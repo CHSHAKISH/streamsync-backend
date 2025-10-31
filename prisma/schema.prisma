@@ -1,0 +1,44 @@
+// This is your Prisma schema file
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("mysql://root:Password123@localhost:3306/streamsync")
+}
+
+model User {
+  id            Int          @id @default(autoincrement())
+  email         String       @unique
+  password_hash String
+  fcm_tokens    FcmToken[]
+  notifications Notification[]
+}
+
+model FcmToken {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  platform  String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    Int
+}
+
+model Video {
+  video_id      String   @id @unique
+  title         String
+  thumbnail_url String
+  channel_id    String
+  published_at  DateTime
+}
+
+model Notification {
+  id          Int      @id @default(autoincrement())
+  title       String
+  body        String
+  received_at DateTime @default(now())
+  is_read     Boolean  @default(false)
+  user        User     @relation(fields: [userId], references: [id])
+  userId      Int
+}
