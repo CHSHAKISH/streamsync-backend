@@ -4,16 +4,19 @@ import 'package:injectable/injectable.dart';
 
 @module
 abstract class RegisterModule {
+
   @lazySingleton
   Dio get dio {
-    // Configure Dio with your backend URL
-    final dio = Dio(
-      BaseOptions(
-        baseUrl: 'http://10.0.2.2:3000', // <-- IMPORTANT!
-        // '10.0.2.2' is the special IP for Android Emulator
-        // to connect to your computer's 'localhost'
-      ),
-    );
+    final dio = Dio();
+
+    // --- MAKE SURE THIS URL IS CORRECT ---
+    // It must match your backend's prefix
+    dio.options.baseUrl = 'http://10.0.2.2:3000/api';
+    // -----------------------------------
+
+    dio.options.connectTimeout = const Duration(seconds: 5);
+    dio.options.receiveTimeout = const Duration(seconds:5);
+
     return dio;
   }
 }

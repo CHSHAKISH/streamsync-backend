@@ -1,12 +1,17 @@
-// src/main.ts
+// backend/src/main.ts
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { ValidationPipe } from '@nestjs/common'; // <-- IMPORT THIS
+import { ValidationPipe } from '@nestjs/common'; 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalPipes(new ValidationPipe()); // <-- ADD THIS LINE
+  // --- MAKE SURE THESE TWO LINES EXIST ---
+  app.enableCors(); // Allows your app to call the backend
+  app.setGlobalPrefix('api'); // This is the prefix
+  // ------------------------------------
+
+  app.useGlobalPipes(new ValidationPipe()); 
 
   await app.listen(3000);
 }
