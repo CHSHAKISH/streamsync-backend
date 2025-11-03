@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "170868003587",
+    "project_id": "streamsync-bdc13",
+    "storage_bucket": "streamsync-bdc13.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:170868003587:android:3be274ba0e984750168f36",
+        "android_client_info": {
+          "package_name": "com.example.frontend"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEVomoYkvHDAVsXGYcDkrx_-oMsJxAJe8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
